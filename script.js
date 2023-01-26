@@ -11,12 +11,103 @@ const profileData = `<div class="col3"><div id="leftContainer2">
 </div>
 </div>
 `
+function loadMenus() {
+	
+	const items = [];
+	$("#menu_left").children().each(i => {
+		let item = $('#menu_left').children().eq(i);
+		if (item.attr('class') != undefined) {
+			if (item.attr('class').split(' ').includes('menu_header')) {
+				items.push([{ name: item.text(), href: null }])
+			}
+		} else {
+			items[items.length-1].push(
+				{ name: item.text(), href: item.attr('href') }
+			)
+		}
+	})
+	
+	$("#menu_left").children().remove();
+
+	$("#menu_left").append('<ul class="main-navigation">')
+
+	for (const header of items) {
+		if (items.indexOf(header) > 0) {
+			let i = items.indexOf(header)
+			if (items[i-1][0].name == header[0].name) continue
+		}
+		if (!header[0].name) continue
+		$(".main-navigation").append(`<li class="menu_header nav-header nav-header-${header[0].name}">${header[0].name}<ul></ul></li>`)
+		for (const item of header) {
+			if (header.indexOf(item) == 0) continue;
+			const li = document.createElement('li');
+			li.innerHTML = `<a href="${item.href}">${item.name}</a>`
+			$(`.nav-header-${header[0].name}`).children().get(0).append(li)
+		}
+	}
+	
+	$(".colright").append(profileData)
+	const profileItems = [{
+		name: 'Min Profil',
+		href: 'student/right_student_pwdadmin.jsp'
+	}, {
+		name: 'Skolinfo',
+		href: 'student/right_student_school.jsp'
+	}, {
+		name: 'Logga ut',
+		href: 'https://nologout.academedia.se',
+		overwrite: true
+	}]
+
+	for (const item of profileItems) {
+		let url = window.location.href.split('/').slice(0, 5).join('/') + '/'
+	
+		$(".second-navigation").append(`<li class="menu_header nav-header nav-header-${item.name}"><a href="${item.overwrite ? item.href : url + item.href}">${item.name}</a></li>`)
+	}
+	
+	$(".col2").hide();
+	$(".col3").hide()
+}
+
+function loadEvents() {
+	$("#menuicon").click(() => {
+		let col = $(".col2");
+		col.toggle()
+	})
+
+	$("#logoL").click(() => {
+		let oldParts = window.location.href.split('/');
+		oldParts = oldParts.slice(0, 6);
+		console.log(oldParts)
+		oldParts.push('right_student_startpage.jsp')
+		window.location.href = oldParts.join('/')
+	})
+	
+	$(".pushmenu-push").keydown(event => {
+		if (event.keyCode == 27) {
+			$(".col2").hide();
+		}
+	})
+	
+	$("#profileicon").click(() => {
+		$(".col3").toggle()
+	})
+
+	$("li").click(event => {
+		const content = $(event.target).children().get(0);
+		if ($(content).attr('href')) {
+			window.location.href = $(content).attr('href')
+		}
+		console.log($(event.target).children().get(0))
+	})
+}
+
 
 $("#top").append(menuIcon)
 $("#top").append(profileIcon)
 $("#top").append(logo);
 
-$(".col2").hide();
+
 
 const items = [];
 $("#menu_left").children().each(i => {
@@ -29,25 +120,6 @@ $("#menu_left").children().each(i => {
 		items[items.length-1].push({ name: item.text(), href: item.attr('href') })
 	}
 })
-
-$("#menu_left").children().remove();
-
-$("#menu_left").append('<ul class="main-navigation">')
-
-for (const header of items) {
-	if (items.indexOf(header) > 0) {
-		let i = items.indexOf(header)
-		if (items[i-1][0].name == header[0].name) continue
-	}
-	if (!header[0].name) continue
-	$(".main-navigation").append(`<li class="menu_header nav-header nav-header-${header[0].name}">${header[0].name}<ul></ul></li>`)
-	for (const item of header) {
-		if (header.indexOf(item) == 0) continue;
-		const li = document.createElement('li');
-		li.innerHTML = `<a href="${item.href}">${item.name}</a>`
-		$(`.nav-header-${header[0].name}`).children().get(0).append(li)
-	}
-}
 
 // $("#menu_left").children().each(i => {
 // 	let item = $('#menu_left').children().eq(i);
@@ -64,27 +136,7 @@ for (const header of items) {
 // 	})
 // })
 
-$("#menuicon").click(() => {
-	let col = $(".col2");
-	col.toggle()
-	
-	
-})
 
-$("#logoL").click(() => {
-	let oldParts = window.location.href.split('/');
-	oldParts = oldParts.slice(0, 6);
-	console.log(oldParts)
-	oldParts.push('right_student_startpage.jsp')
-	window.location.href = oldParts.join('/')
-})
-
-
-$(".pushmenu-push").keydown(event => {
-	if (event.keyCode == 27) {
-		$(".col2").hide();
-	}
-})
 
 function url_content(url){
     return $.get(url);
@@ -151,37 +203,6 @@ $(document).ready(function() {
   </div>
 </div>
 </div>`)
-})
-
-$(".colright").append(profileData)
-const profileItems = [{
-	name: 'Min Profil',
-	href: 'student/right_student_pwdadmin.jsp'
-}, {
-	name: 'Skolinfo',
-	href: 'student/right_student_school.jsp'
-}, {
-	name: 'Logga ut',
-	href: 'https://nologout.academedia.se',
-	overwrite: true
-}]
-
-for (const item of profileItems) {
-	let url = window.location.href.split('/').slice(0, 5).join('/') + '/'
-	
-	$(".second-navigation").append(`<li class="menu_header nav-header nav-header-${item.name}"><a href="${item.overwrite ? item.href : url + item.href}">${item.name}</a></li>`)
-}
-
-$(".col3").hide()
-
-$("#profileicon").click(() => {
-	$(".col3").toggle()
-})
-
-$("li").click(event => {
-	const content = $(event.target).children().get(0);
-	if ($(content).attr('href')) {
-		window.location.href = $(content).attr('href')
-	}
-	console.log($(event.target).children().get(0))
+	loadMenus();
+	loadEvents();
 })
