@@ -1,5 +1,5 @@
 const logo = '<img id="logoL" src="https://www.schoolsoft.se/5b0c9e828c5b637b38953b3ea41e5e86.svg" height="30px" />'
-const profileIcon = '<span id="profileicon" class="text top-gray-bar-info"><img src="https://img.icons8.com/material-rounded/30/user-male-circle.png"/></span>'
+const profileIcon = '<span id="profileicon" class="text top-gray-bar-info"><img id="pfp" src="https://img.icons8.com/material-rounded/30/user-male-circle.png"/></span>'
 const menuIcon = '<span id="menuicon" tabindex="1" class="top-gray-bar-info text"><img src="https://img.icons8.com/ios-glyphs/30/menu-rounded.png" /></span>'
 $("#header").children().remove();
 $("#header").append('<div id="top"></div>')
@@ -87,8 +87,10 @@ function url_content(url){
 
 url_content("https://sms.schoolsoft.se/nti/jsp/student/right_student_pwdadmin.jsp").success(function(data){
   $("#profileicon").children().get(0).src = data.split('<img')[2].split('"')[1]
-  $("#profileicon").children().get(0).height = 30;
-  $("#profileicon").children().get(0).width = 30 * (160/187);
+  
+  $("#pfp").css("height", "120%")
+  $("#pfp").css("width", "100%")
+  
 });
 
 $(document).ready(function() {
