@@ -1,0 +1,185 @@
+.colmask {
+	top: 39px;
+}
+
+.h2_box {
+	background: rgba(46, 107, 245, 0.5);
+	color: white;
+	/*border-radius: 5px 5px 0 0;*/
+	border: none;
+}
+
+.h2_container {
+	border-radius: 10px;
+	border-collapse: separate;
+	perspective: 1px;
+	overflow: hidden;
+	border: 1px solid #ccc; 
+}
+
+.h2_inner, .h2_innerno_pad {
+	border: none;
+}
+
+.table {
+	width: 100% !important;
+}
+
+.h2_innerno_pad {
+	width: 100%;
+}
+
+.table tr:last-child {
+	border: none;
+}
+
+#header {
+	height: 47px;
+}
+
+#main {
+	margin-top: 1;
+	width: 100%;
+}
+
+#profileicon {
+	background: : url(https://freesvg.org/img/abstract-yser-flat-4.png);
+	width: calc(30 * (160/187));
+	height: 30px;
+	padding: 0 1px;
+	margin: auto 0 auto 10px;
+	border-radius: 10px;
+	overflow: hidden;
+	border: 1px solid black;
+}
+#profileicon:hover {
+	cursor: pointer;
+	background: #dadada;
+}
+
+#top {
+	background: #eaeaea;
+	display: flex;
+	padding-right: 5px;
+}
+
+#logoL {
+	margin: auto 10px auto 10px;
+}
+#logoL:hover {
+	cursor: pointer;
+}
+
+#menuicon {
+	margin: auto 0;
+	margin-left: 24px;
+	/*margin-bottom: 2px;*/
+	width: 30px;
+	height: 30px;
+	border-radius: 10%;
+	padding: 0 3px;
+	padding-bottom: 0;
+}
+
+#menuicon:hover {
+	background: #dadada;
+	cursor: pointer;
+}
+
+#menuicon:active {
+	background: #cacaca;
+	border: none;
+}
+#menuicon:focus {
+	border: none;
+	box-shadow: none;
+}
+
+.leftmenu .col2 {
+	left: 0;
+	box-shadow: 25px 5px 5px #bbb;
+}
+
+.leftmenu .colright {
+	left: 0;
+	/*min-width: 100%;*/
+}
+
+.col1 {
+	/*min-width: 100%;*/
+}
+
+.content_wrapper {
+	/*min-width: 99%;*/
+}
+
+.menu_header {
+	height: 30px;
+	vertical-align: center;
+	font-size: 15px;
+}
+
+.main-navigation {
+	list-style: none;
+	margin: 0;
+}
+
+li {
+  position: relative;
+  /*border: 1px solid #ccc;*/
+}
+li:hover {
+	cursor: default;
+}
+li a {
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+}
+li ul {
+  position: absolute;
+  top: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: none;
+  line-height: normal;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+li ul li a {
+  text-align: left;
+  color: #343434;
+  font-size: 14px;
+  padding: 10px;
+  display: block;
+  white-space: nowrap;
+}
+li ul li a:hover {
+  background-color: #dadada;
+  color: #343434;
+}
+li ul {
+  left: 100%;
+  top: 0;
+}
+
+ul li:hover>ul {
+  display: block;
+}
+
+.span6left, .span6right {
+    width: 43%;
+}
+
+.span6right {
+    float: left;
+    margin-left: 1.25%;
+}
+
+#show_this {
+	min-width: 47.5vw;
+	max-width: 47.5vw;
+}
