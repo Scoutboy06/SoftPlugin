@@ -44,9 +44,9 @@
 
 #profileicon {
 	background: : url(https://freesvg.org/img/abstract-yser-flat-4.png);
-	width: calc(30 * (160/187));
+	width: 30px;
 	height: 30px;
-	padding: 0 1px;
+	padding: 0 0px;
 	margin: auto 0 auto 10px;
 	border-radius: 10px;
 	overflow: hidden;
