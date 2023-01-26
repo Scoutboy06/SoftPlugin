@@ -115,7 +115,7 @@
 
 .menu_header {
 	height: 30px;
-	vertical-align: center;
+	vertical-align: middle;
 	font-size: 15px;
 }
 
@@ -126,17 +126,19 @@
 
 li {
   position: relative;
-  /*border: 1px solid #ccc;*/
+  border-bottom: 1px solid #ccc;
+  line-height: 18px;
+  margin: 0;
+  height: 27px;
 }
 li:hover {
 	cursor: default;
 }
 li a {
-  color: #ffffff;
-  text-align: center;
+  color: #343434;
+  text-align: left;
   text-decoration: none;
   display: block;
-  padding: 10px;
 }
 li ul {
   position: absolute;
@@ -153,13 +155,13 @@ li ul li a {
   text-align: left;
   color: #343434;
   font-size: 14px;
-  padding: 10px;
   display: block;
   white-space: nowrap;
 }
-li ul li a:hover {
+li ul li:hover {
   background-color: #dadada;
   color: #343434;
+  cursor: pointer;
 }
 li ul {
   left: 100%;
@@ -182,4 +184,78 @@ ul li:hover>ul {
 #show_this {
 	min-width: 47.5vw;
 	max-width: 47.5vw;
+}
+
+.menu_header2 {
+	border-left: none;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid transparent;
+    border-top: none;
+    padding-left: 12px;
+    padding-top: 6px;
+    min-height: 16px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+}
+.menu_header2 {
+    height: 30px;
+    vertical-align: middle;
+    font-size: 15px;
+    padding-bottom: 1px;
+    border-right: 1px solid #cccccc;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #343434;
+    border-bottom: 1px solid #cccccc;
+}
+
+#leftMenu2 {
+	float: left;
+    position: relative;
+    width: 100px;
+    margin-left: 12px;
+    line-height: 1.2;
+    display: inline;
+    background-color: #ffffff;
+    margin-top: 9px;
+    border-left: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+}
+
+#menu_left2 {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    /* height: 100%; */
+    /* box-shadow: 0 1px 1px rgb(0 0 0 / 5%); */
+    width: 100px;
+    float: left;
+}
+
+.second-navigation {
+	list-style: none;
+	margin: 0;
+}
+
+.leftmenu .col3 {
+    float: left;
+    width: 100px;
+    position: absolute;
+    top: 0;
+    left: 50px;
+    box-shadow: 20px 5px 5px #bbb;
+    color: #343434;
+    text-align: left;
+}
+
+.col3 li:hover {
+	background-color: #dadada;
+	cursor: pointer;
+}
+
+.col2 ul li ul li {
+	line-height: 18px;
+	width: auto;
+	padding: 5px;
 }
