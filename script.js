@@ -1,8 +1,16 @@
 const logo = '<img id="logoL" src="https://www.schoolsoft.se/5b0c9e828c5b637b38953b3ea41e5e86.svg" height="30px" />'
-const profileIcon = '<span id="profileicon" class="text top-gray-bar-info"> <a href="https://sms.schoolsoft.se/nti/jsp/student/right_student_pwdadmin.jsp"><img id="pfp" src="https://img.icons8.com/material-rounded/30/user-male-circle.png"/></a> </span>'
+const profileIcon = '<span id="profileicon" class="text top-gray-bar-info"><img id="pfp" src="https://img.icons8.com/material-rounded/30/user-male-circle.png"/></span>'
 const menuIcon = '<span id="menuicon" tabindex="1" class="top-gray-bar-info text"><img src="https://img.icons8.com/ios-glyphs/30/menu-rounded.png" /></span>'
 $("#header").children().remove();
 $("#header").append('<div id="top"></div>')
+
+const profileData = `<div class="col3"><div id="leftContainer2">
+<div id="leftMenu2">
+	<div id="menu_left2"><ul class="second-navigation"></ul></div>
+</div>
+</div>
+</div>
+`
 
 $("#top").append(menuIcon)
 $("#top").append(profileIcon)
@@ -13,8 +21,6 @@ $(".col2").hide();
 const items = [];
 $("#menu_left").children().each(i => {
 	let item = $('#menu_left').children().eq(i);
-	console.log(item.text())
-	console.log(item)
 	if (item.attr('class') != undefined) {
 		if (item.attr('class').split(' ').includes('menu_header')) {
 			items.push([{ name: item.text(), href: null }])
@@ -23,8 +29,6 @@ $("#menu_left").children().each(i => {
 		items[items.length-1].push({ name: item.text(), href: item.attr('href') })
 	}
 })
-
-console.log(items)
 
 $("#menu_left").children().remove();
 
@@ -75,6 +79,7 @@ $("#logoL").click(() => {
 	window.location.href = oldParts.join('/')
 })
 
+
 $(".pushmenu-push").keydown(event => {
 	if (event.keyCode == 27) {
 		$(".col2").hide();
@@ -86,9 +91,9 @@ function url_content(url){
 }
 
 url_content("https://sms.schoolsoft.se/nti/jsp/student/right_student_pwdadmin.jsp").success(function(data){
-	console.log(data.split('<img')[2].split('"')[1])
-  $("#pfp").src = data.split('<img')[2].split('"')[1]
-  $("#pfp").attr("src", data.split('<img')[2].split('"')[1])
+  console.log(data.split('<img')[2].split('"')[1])
+  $("#pfp").get(0).src = data.split('<img')[2].split('"')[1]
+  
   $("#pfp").css("height", "120%")
   $("#pfp").css("width", "100%")
   
@@ -146,4 +151,37 @@ $(document).ready(function() {
   </div>
 </div>
 </div>`)
+})
+
+$(".colright").append(profileData)
+const profileItems = [{
+	name: 'Min Profil',
+	href: 'student/right_student_pwdadmin.jsp'
+}, {
+	name: 'Skolinfo',
+	href: 'student/right_student_school.jsp'
+}, {
+	name: 'Logga ut',
+	href: 'https://nologout.academedia.se',
+	overwrite: true
+}]
+
+for (const item of profileItems) {
+	let url = window.location.href.split('/').slice(0, 5).join('/') + '/'
+	
+	$(".second-navigation").append(`<li class="menu_header nav-header nav-header-${item.name}"><a href="${item.overwrite ? item.href : url + item.href}">${item.name}</a></li>`)
+}
+
+$(".col3").hide()
+
+$("#profileicon").click(() => {
+	$(".col3").toggle()
+})
+
+$("li").click(event => {
+	const content = $(event.target).children().get(0);
+	if ($(content).attr('href')) {
+		window.location.href = $(content).attr('href')
+	}
+	console.log($(event.target).children().get(0))
 })
