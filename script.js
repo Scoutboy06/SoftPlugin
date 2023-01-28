@@ -1,8 +1,7 @@
 const logo = '<img id="logoL" src="https://www.schoolsoft.se/5b0c9e828c5b637b38953b3ea41e5e86.svg" height="30px" />'
 const profileIcon = '<span id="profileicon" class="text top-gray-bar-info"><img id="pfp" src="https://img.icons8.com/material-rounded/30/user-male-circle.png"/></span>'
 const menuIcon = '<span id="menuicon" tabindex="1" class="top-gray-bar-info text"><img src="https://img.icons8.com/ios-glyphs/30/menu-rounded.png" /></span>'
-$("#header").children().remove();
-$("#header").append('<div id="top"></div>')
+
 
 const profileData = `<div class="col3"><div id="leftContainer2">
 <div id="leftMenu2">
@@ -45,6 +44,7 @@ function loadMenus() {
 			$(`.nav-header-${header[0].name}`).children().get(0).append(li)
 		}
 	}
+	console.log($('.main_navigation'))
 	
 	$(".colright").append(profileData)
 	const profileItems = [{
@@ -103,23 +103,20 @@ function loadEvents() {
 }
 
 
-$("#top").append(menuIcon)
-$("#top").append(profileIcon)
-$("#top").append(logo);
 
 
 
-const items = [];
-$("#menu_left").children().each(i => {
-	let item = $('#menu_left').children().eq(i);
-	if (item.attr('class') != undefined) {
-		if (item.attr('class').split(' ').includes('menu_header')) {
-			items.push([{ name: item.text(), href: null }])
-		}
-	} else {
-		items[items.length-1].push({ name: item.text(), href: item.attr('href') })
-	}
-})
+// const items = [];
+// $("#menu_left").children().each(i => {
+// 	let item = $('#menu_left').children().eq(i);
+// 	if (item.attr('class') != undefined) {
+// 		if (item.attr('class').split(' ').includes('menu_header')) {
+// 			items.push([{ name: item.text(), href: null }])
+// 		}
+// 	} else {
+// 		items[items.length-1].push({ name: item.text(), href: item.attr('href') })
+// 	}
+// })
 
 // $("#menu_left").children().each(i => {
 // 	let item = $('#menu_left').children().eq(i);
@@ -142,7 +139,7 @@ function url_content(url){
     return $.get(url);
 }
 
-url_content("https://sms.schoolsoft.se/nti/jsp/student/right_student_pwdadmin.jsp").success(function(data){
+$.get("https://sms.schoolsoft.se/nti/jsp/student/right_student_pwdadmin.jsp").then(function(data){
   console.log(data.split('<img')[2].split('"')[1])
   $("#pfp").get(0).src = data.split('<img')[2].split('"')[1]
   
@@ -151,7 +148,7 @@ url_content("https://sms.schoolsoft.se/nti/jsp/student/right_student_pwdadmin.js
   
 });
 
-$(document).ready(function() {
+jQuery(function() {
 	$(".cal-lesson").css("border-radius", "0px");
 	$(".cal-lesson").css("background-image", "-webkit-linear-gradient(top, #2b518f, #2b518f)")
 	$(".cal-lesson").css("border", "1px solid #000")
@@ -159,7 +156,7 @@ $(document).ready(function() {
 	$(".cal-test").css("border-radius", "0px");
 	$(".cal-test").css("background-image", "-webkit-linear-gradient(top, #660000, #660000)")
 	$("#content").css("width", "98.8%")
-	$("#main").css("width", "114%")
+	$("#main").css("width", "108%")
 	$(".pushmenu-push").css("overflow-x", "hidden")
     var span = $(".span6right").clone()
     span.attr("id", "betyg")
@@ -203,6 +200,13 @@ $(document).ready(function() {
   </div>
 </div>
 </div>`)
+
+	$("#header").children().remove();
+	$("#header").append('<div id="top"></div>')
+	$("#top").append(menuIcon)
+	$("#top").append(profileIcon)
+	$("#top").append(logo);
+
 	loadMenus();
 	loadEvents();
 })

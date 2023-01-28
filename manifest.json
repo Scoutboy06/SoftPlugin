@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "name": "SoftPlugin",
+    "version": "0.1.0",
+    "description": "A visual plugin for the Schoolsoft website.",
+    "content_scripts": [{
+        "js": ["jquery.min.js", "script.js"],
+        "css": ["style.css"],
+        "matches": ["https://sms.schoolsoft.se/*"]
+    }]
+}
