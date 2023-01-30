@@ -166,7 +166,7 @@ $(document).ready(function() {
     $(".img-rounded").attr("src", "https://i.imgur.com/fw5vBqp.png")
     $(".img-rounded").css("width", "9%")
     $("#top_content_wrapper").css("width", "96%")
-    $(".ng-scope").append(`<div class="span6right" id="betyg">
+    /*$(".ng-scope").append(`<div class="span6right" id="betyg">
 <div class="h2_container" id="news_con">
   <div class="h2_box">
     <div class="h2_box_icon" style="margin-left:-10px; padding-top:2px;">
@@ -202,7 +202,7 @@ $(document).ready(function() {
     </table>
   </div>
 </div>
-</div>`)
+</div>`)*/
 	loadMenus();
 	loadEvents();
 })
