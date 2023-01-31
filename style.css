@@ -1,12 +1,12 @@
 .colmask {
-	top: 39px;
+	top: 39px !important;
 }
 
 .h2_box {
-	background: rgba(46, 107, 245, 0.5);
-	color: white;
+	background: rgba(46, 107, 245, 0.5) !important;
+	color: white !important;
 	/*border-radius: 5px 5px 0 0;*/
-	border: none;
+	border: none !important;
 }
 
 .h2_container {
@@ -43,7 +43,7 @@
 }
 
 #profileicon {
-	background: : url(https://freesvg.org/img/abstract-yser-flat-4.png);
+	background: url(https://img.icons8.com/ios-glyphs/30/menu-rounded.png);
 	width: 30px;
 	height: 30px;
 	padding: 0 0px;
@@ -58,7 +58,7 @@
 }
 
 #top {
-	background: #eaeaea;
+	background: #eaeaea !important;
 	display: flex;
 	padding-right: 5px;
 }
@@ -96,27 +96,23 @@
 }
 
 .leftmenu .col2 {
-	left: 0;
+	left: 0 !important;
 	box-shadow: 25px 5px 5px #bbb;
 }
 
 .leftmenu .colright {
-	left: 0;
-	/*min-width: 100%;*/
+	left: 0 !important;
+	/* min-width: 100% !important; */
 }
 
-.col1 {
-	/*min-width: 100%;*/
-}
-
-.content_wrapper {
-	/*min-width: 99%;*/
+.leftmenu .colmask {
+  width: auto;
 }
 
 .menu_header {
 	height: 30px;
-	vertical-align: middle;
-	font-size: 15px;
+	vertical-align: middle !important;
+	font-size: 15px !important;
 }
 
 .main-navigation {
@@ -126,10 +122,10 @@
 
 li {
   position: relative;
-  border-bottom: 1px solid #ccc;
-  line-height: 18px;
-  margin: 0;
-  height: 27px;
+  border-bottom: 1px solid #ccc !important;
+  line-height: 18px !important;
+  margin: 0 !important;
+  height: 30px !important;
 }
 li:hover {
 	cursor: default;
@@ -154,7 +150,7 @@ li ul {
 li ul li a {
   text-align: left;
   color: #343434;
-  font-size: 14px;
+  font-size: 15px;
   display: block;
   white-space: nowrap;
 }
@@ -173,17 +169,17 @@ ul li:hover>ul {
 }
 
 .span6left, .span6right {
-    width: 43%;
+    width: 43% !important;
 }
 
 .span6right {
-    float: left;
-    margin-left: 1.25%;
+    float: right !important;
+    margin-left: 1.25% !important;
 }
 
 #show_this {
-	min-width: 47.5vw;
-	max-width: 47.5vw;
+	min-width: 47.5vw !important;
+	max-width: 47.5vw !important;
 }
 
 .menu_header2 {
