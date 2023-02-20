@@ -1,11 +1,27 @@
 {
-    "manifest_version": 3,
-    "name": "SoftPlugin",
-    "version": "0.1.0",
-    "description": "A visual plugin for the Schoolsoft website.",
-    "content_scripts": [{
-        "js": ["jquery.min.js", "script.js"],
-        "css": ["style.css"],
-        "matches": ["https://sms.schoolsoft.se/*"]
-    }]
+  "manifest_version": 3,
+  "name": "SoftPlugin",
+  "version": "0.1.0",
+  "description": "A visual plugin for the Schoolsoft website.",
+  "action": {
+    "default_icon": "assets/icon3.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "js": ["jquery.min.js", "script.js"],
+      "css": ["style.css"],
+      "matches": ["https://sms.schoolsoft.se/*"]
+    },
+    {
+      "matches": ["https://login.grandid.com/*"],
+      "js": ["jquery.min.js", "login.js"]
+    }
+  ],
+  "icons": {
+    "16": "assets/icon1.png",
+    "48": "assets/icon2.png",
+    "128": "assets/icon3.png"
+  }
 }
