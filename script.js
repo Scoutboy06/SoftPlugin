@@ -1,11 +1,11 @@
-const logo = '<img data-newui id="logoL" src="https://www.schoolsoft.se/5b0c9e828c5b637b38953b3ea41e5e86.svg" height="30px" />'
-const profileIcon = '<span data-newui id="profileicon" class="text top-gray-bar-info"><img data-newui id="pfp" src="https://img.icons8.com/material-rounded/30/user-male-circle.png"/></span>'
-const menuIcon = '<span data-newui id="menuicon" tabindex="1" class="top-gray-bar-info text"><img data-newui src="https://img.icons8.com/ios-glyphs/30/menu-rounded.png" /></span>'
+const logo = '<img  id="logoL" src="https://www.schoolsoft.se/5b0c9e828c5b637b38953b3ea41e5e86.svg" height="30px" />'
+const profileIcon = '<span  id="profileicon" class="text top-gray-bar-info"><img  id="pfp" src="https://img.icons8.com/material-rounded/30/user-male-circle.png"/></span>'
+const menuIcon = '<span  id="menuicon" tabindex="1" class="top-gray-bar-info text"><img  src="https://img.icons8.com/ios-glyphs/30/menu-rounded.png" /></span>'
 
 
-const profileData = `<div class="col3" data-newui><div id="leftContainer2" data-newui>
-<div id="leftMenu2" data-newui>
-	<div id="menu_left2" data-newui><ul data-newui class="second-navigation"></ul></div>
+const profileData = `<div class="col3" ><div id="leftContainer2" >
+<div id="leftMenu2" >
+	<div id="menu_left2" ><ul  class="second-navigation"></ul></div>
 </div>
 </div>
 </div>
@@ -36,7 +36,7 @@ function loadMenus() {
 
 	$("#menu_left").children().remove();
 
-	$("#menu_left").append('<ul data-newui class="main-navigation">')
+	$("#menu_left").append('<ul  class="main-navigation">')
 
 	for (const header of items) {
 		if (items.indexOf(header) < items.length - 1) {
@@ -44,13 +44,12 @@ function loadMenus() {
 			if (items[i + 1][0].name == header[0].name) continue
 		}
 		if (!header[0].name) continue
-		$(".main-navigation").append(`<li data-newui class="menu_header nav-header nav-header-${header[0].name}">${header[0].name}<ul data-newui></ul></li>`)
+		$(".main-navigation").append(`<li  class="menu_header nav-header nav-header-${header[0].name}">${header[0].name}<ul ></ul></li>`)
 		for (const item of header) {
 			if (header.indexOf(item) == 0) continue;
 			if (item.name.length > 20) continue;
 			const li = document.createElement('li');
-			li.setAttribute('data-newui', 'true')
-			li.innerHTML = `<a data-newui href="${item.href}">${item.name}</a>`
+			li.innerHTML = `<a  href="${item.href}">${item.name}</a>`
 			try {
 				$(`.nav-header-${header[0].name}`).children().get(0).append(li)
 			} catch (e) {
@@ -75,7 +74,7 @@ function loadMenus() {
 	for (const item of profileItems) {
 		let url = window.location.href.split('/').slice(0, 5).join('/') + '/'
 
-		$(".second-navigation").append(`<li data-newui class="menu_header nav-header nav-header-${item.name}"><a data-newui href="${item.overwrite ? item.href : url + item.href}">${item.name}</a></li>`)
+		$(".second-navigation").append(`<li  class="menu_header nav-header nav-header-${item.name}"><a  href="${item.overwrite ? item.href : url + item.href}">${item.name}</a></li>`)
 	}
 
 	$(".col2").hide();
@@ -189,37 +188,37 @@ function main() {
 		$(".img-rounded").attr("src", "https://i.imgur.com/fw5vBqp.png")
 		$(".img-rounded").css("width", "9%")
 		$("#top_content_wrapper").css("width", "96%")
-		$(".ng-scope").append(`<div class="span6right" id="betyg" data-newui>
-<div class="h2_container" id="news_con" data-newui>
-  <div class="h2_box" data-newui>
-    <div class="h2_box_icon" style="margin-left:-10px; padding-top:2px;" data-newui>
-      <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/changelog.png" alt="" title="" data-newui>
+		$(".ng-scope").append(`<div class="span6right" id="betyg" >
+<div class="h2_container" id="news_con" >
+  <div class="h2_box" >
+    <div class="h2_box_icon" style="margin-left:-10px; padding-top:2px;" >
+      <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/changelog.png" alt="" title="" >
     </div>
-    <div class=" h3 " style="margin-top:6px; padding-left:6px;" data-newui>Changelog</div>
+    <div class=" h3 " style="margin-top:6px; padding-left:6px;" >Changelog</div>
   </div>
-  <div id="news_con_content" class="h2_innerno_pad" data-newui>
-    <div class="h3_bold" data-newui>Här ser du senaste ändringar på vårat plugin.</div>
-    <table class="table table-striped news-private" style="width: 370px; word-break: break-word; border-right: rgb(204, 204, 204);" data-newui>
-      <tbody data-newui>
-        <tr class="news-private" data-newui>
-          <td class="news-private-td" data-newui>
-            <a class="toplist-item" href="" data-newui>
-              <div class="list-top" data-newui></div>
-              <div class="heading_bold" data-newui>Introducerar dark-theme</div>
-              <div data-newui>Använd SchoolSoft med dark-theme redan idag.</div>
+  <div id="news_con_content" class="h2_innerno_pad" >
+    <div class="h3_bold" >Här ser du senaste ändringar på vårat plugin.</div>
+    <table class="table table-striped news-private" style="width: 370px; word-break: break-word; border-right: rgb(204, 204, 204);" >
+      <tbody >
+        <tr class="news-private" >
+          <td class="news-private-td" >
+            <a class="toplist-item" href="" >
+              <div class="list-top" ></div>
+              <div class="heading_bold" >Introducerar dark-theme</div>
+              <div >Använd SchoolSoft med dark-theme redan idag.</div>
             </a>
           </td>
-          <td class="news-private-td-right" align="center" data-newui></td>
+          <td class="news-private-td-right" align="center" ></td>
         </tr>
-        <tr class="news-private" data-newui>
-          <td class="news-private-td" data-newui>
-            <a class="toplist-item" href="" data-newui>
-              <div class="list-top" data-newui></div>
-              <div class="heading_bold" data-newui>NTIP byggs fortfarande!</div>
-              <div data-newui>Utvecklingen av NTIP påbörjades 2023-01-24!</div>
+        <tr class="news-private" >
+          <td class="news-private-td" >
+            <a class="toplist-item" href="" >
+              <div class="list-top" ></div>
+              <div class="heading_bold" >NTIP byggs fortfarande!</div>
+              <div >Utvecklingen av NTIP påbörjades 2023-01-24!</div>
             </a>
           </td>
-          <td class="news-private-td-right" align="center" data-newui></td>
+          <td class="news-private-td-right" align="center" ></td>
         </tr>
       </tbody>
     </table>
@@ -229,7 +228,7 @@ function main() {
 	}
 
 	$("#header").children().remove();
-	$("#header").append('<div id="top" data-newui></div>')
+	$("#header").append('<div id="top" ></div>')
 	$("#top").append(menuIcon)
 	$("#top").append(profileIcon)
 	$("#top").append(logo);
@@ -249,7 +248,7 @@ function main() {
 
 	if (hasAdblocker()) {
 		$('.pushmenu-push').children().remove();
-		$('.pushmenu-push').append(`<img data-newui width="${window.innerWidth}" height="${window.innerHeight}"
+		$('.pushmenu-push').append(`<img  width="${window.innerWidth}" height="${window.innerHeight}"
 		src="https://media1.giphy.com/media/Vuw9m5wXviFIQ/giphy.gif"/>`)
 	}
 
@@ -265,13 +264,22 @@ function main() {
 }
 
 jQuery(function () {
-	chrome.storage.local.get('new-ui').then(items => {
+	chrome.storage.local.get().then(items => {
 		if (items['new-ui']) {
+			
+			main();
 			var elems = document.body.getElementsByTagName("*");
+			document.body.setAttribute('data-newui', 'true');
 			for (const elem of elems) {
 				elem.setAttribute('data-newui', 'true')
 			}
-			main();
+		}
+		if (items['dark-mode']) {
+			var elems = document.body.getElementsByTagName("*");
+			document.body.setAttribute('data-darkmode', 'true');
+			for (const elem of elems) {
+				elem.setAttribute('data-darkmode', 'true')
+			}
 		}
 	})
 })

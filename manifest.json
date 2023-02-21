@@ -11,7 +11,7 @@
   "content_scripts": [
     {
       "js": ["jquery.min.js", "script.js"],
-      "css": ["style.css"],
+      "css": ["style.css", "darkmode.css"],
       "matches": ["https://sms.schoolsoft.se/*"]
     },
     {
