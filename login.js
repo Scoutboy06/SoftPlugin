@@ -8,7 +8,7 @@ function get(i)
 }
 $(".my-button").click(function() {
     chrome.storage.local.get('auto-login', function(t) {
-        if(!t['auto-login'])
+        if(t['auto-login'] == null || t['auto-login'] == false)
         {
             chrome.storage.local.set( { 'auto-login': true }, function() {} );
             $(".my-button").css("background", "linear-gradient(to right,#33a24b ,#007e28)")
@@ -31,6 +31,9 @@ $('.newui-button').click(function() {
         }
     })
 })
+// https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_large.png?v=1571606036
+// https://play-lh.googleusercontent.com/mTNMh0pombnh06rbkAjySII-gpTkPt7c0wyfgQiJxG2lOVqBdPPr9uTICxwVqhiGMlk
+
 $("#saveBtn").click(function() {
     chrome.storage.local.set(
         {
@@ -38,7 +41,10 @@ $("#saveBtn").click(function() {
             'credentials': btoa($("#pass").val())
         }, 
         function() {
-            $("#Title").text("Saved!")
+            $("#logooo").attr("src", "https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_large.png?v=1571606036")
+            setTimeout(function() {
+                $("#logooo").attr("src", "https://play-lh.googleusercontent.com/mTNMh0pombnh06rbkAjySII-gpTkPt7c0wyfgQiJxG2lOVqBdPPr9uTICxwVqhiGMlk")
+            }, 2000)
         }
     );
 
@@ -48,7 +54,7 @@ setInterval(function()
 {
     try{
         chrome.storage.local.get('auto-login', function(t) {
-            if(!t['auto-login'])
+            if(t['auto-login'] == null || t['auto-login'] == false)
             {
                 $(".my-button").css("background", "linear-gradient(to right,#ca1933 ,#ff0000)")
             }
@@ -57,16 +63,13 @@ setInterval(function()
                 $(".my-button").css("background", "linear-gradient(to right,#33a24b ,#007e28)")
             }
         })
-        chrome.storage.local.get('new-ui', function(t) {
-            if(!t['new-ui'])
-            {
-                $(".newui-button").css("background", "linear-gradient(to right,#ca1933 ,#ff0000)")
-            }
-            else
-            {
-                $(".newui-button").css("background", "linear-gradient(to right,#33a24b ,#007e28)")
-            }
-        })
+		chrome.storage.local.get('new-ui', function(t) {
+        if (!t['new-ui']) {
+            $(".newui-button").css("background", "linear-gradient(to right,#ca1933 ,#ff0000)")
+        } else {
+            $('.newui-button').css("background", "linear-gradient(to right,#33a24b, #007e28");
+        }
+    })
     }
     catch(e)
     {
