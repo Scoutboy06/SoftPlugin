@@ -6,6 +6,30 @@ function get(i)
 {
     return localStorage.getItem(i)
 }
+
+$("#discBtn").click(() => {
+    chrome.tabs.update({
+        url: "https://discord.gg/bb56BD5erF"
+   });
+})
+
+$("#nightBtn").click(() => {
+    chrome.storage.local.get('dark-mode', function(t) {
+        if(t['dark-mode'] == null || t['dark-mode'] == false)
+        {
+            chrome.storage.local.set( { 'dark-mode': true }, function() {} );
+            $("#nightBtn").css("background", "linear-gradient(to right,#394564 ,#7c8fbf)")
+            //$("#dMode").attr("src", "https://i.imgur.com/pidaniW.png")
+            $("#nightBtn").html(`<img id="dMode" src="https://i.imgur.com/pidaniW.png" style="height: 15px; margin-left: 5px; margin-right: -15px; float: left;" alt="">Light Mode`)
+        }
+        else
+        {
+            chrome.storage.local.set( { 'dark-mode': false }, function() {} );
+            $("#nightBtn").css("background", "linear-gradient(to right,#394564 ,#242c41)")
+            $("#nightBtn").html(`<img id="dMode" src="https://i.imgur.com/BxzW48w.png" style="height: 15px; margin-left: 5px; margin-right: -15px; float: left;" alt="">Dark Mode`)
+        }
+    })
+})
 $(".my-button").click(function() {
     chrome.storage.local.get('auto-login', function(t) {
         if(t['auto-login'] == null || t['auto-login'] == false)

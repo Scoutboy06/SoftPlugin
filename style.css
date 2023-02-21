@@ -100,6 +100,7 @@
 
 .leftmenu .col2[data-newui] {
 	left: 0 !important;
+	box-shadow: 25px 5px 5px #bbb;
 }
 
 .colright[data-newui] {
@@ -125,7 +126,6 @@
 	list-style: none;
 	margin: 0;
 }
-
 
 li[data-newui] {
   position: relative;
@@ -154,20 +154,17 @@ li[data-newui] ul[data-newui] {
   line-height: normal;
   background-color: white;
   border: 1px solid #ccc;
-  transform: translateY(-1px);
 }
 li[data-newui] ul[data-newui] li[data-newui] a[data-newui] {
-  /* text-align: left; */
+  text-align: left;
   color: #343434;
   font-size: 15px;
-  /* display: block; */
-  /* width: 100px; */
-  margin: 0;
-  min-width: 200px;
+  display: block;
+  white-space: nowrap;
 }
 li[data-newui] ul[data-newui] li[data-newui] {
+  max-height: 27px;
   transform:translateZ(-1px);
-  padding: 6px 0 1px 12px;
 }
 li[data-newui] ul[data-newui] li[data-newui]:hover {
   background-color: #dadada;
@@ -239,13 +236,9 @@ ul[data-newui] li[data-newui]:hover>ul[data-newui] {
     font-size: 12px;
     font-weight: normal;
     /* height: 100%; */
-    box-shadow: 3px 3px 3px #444;
+    /* box-shadow: 0 1px 1px rgb(0 0 0 / 5%); */
     width: 100px;
     float: left;
-}
-
-#menu_left[data-newui] {
-  box-shadow: 3px 3px 3px #444;
 }
 
 .second-navigation[data-newui] {
@@ -259,7 +252,7 @@ ul[data-newui] li[data-newui]:hover>ul[data-newui] {
     position: absolute;
     top: 0;
     left: 50px;
-    /* box-shadow: 50px 0 5px #333; */
+    box-shadow: 20px 5px 5px #bbb;
     color: #343434;
     text-align: left;
 }
