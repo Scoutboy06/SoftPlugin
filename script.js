@@ -1,6 +1,6 @@
 const logo = '<img  id="logoL" src="https://www.schoolsoft.se/5b0c9e828c5b637b38953b3ea41e5e86.svg" height="30px" />'
-const profileIcon = '<span  id="profileicon" class="text top-gray-bar-info"><img  id="pfp" src="https://img.icons8.com/material-rounded/30/user-male-circle.png"/></span>'
-const menuIcon = '<span  id="menuicon" tabindex="1" class="top-gray-bar-info text"><img  src="https://img.icons8.com/ios-glyphs/30/menu-rounded.png" /></span>'
+const profileIcon = '<span  id="profileicon" class="text top-gray-bar-info"><img id="pfp" src="https://img.icons8.com/material-rounded/30/user-male-circle.png"/></span>'
+const menuIcon = '<span  id="menuicon" tabindex="1" class="top-gray-bar-info text"><img id="menuimg" src="https://img.icons8.com/ios-glyphs/30/menu-rounded.png" /></span>'
 
 
 const profileData = `<div class="col3" ><div id="leftContainer2" >
@@ -84,7 +84,8 @@ function loadMenus() {
 function loadEvents() {
 	$("#menuicon").click(() => {
 		let col = $(".col2");
-		col.toggle()
+		col.toggle();
+		$(this).data('clicked', true);
 	})
 
 	$("#logoL").click(() => {
@@ -98,11 +99,27 @@ function loadEvents() {
 	$(".pushmenu-push").keydown(event => {
 		if (event.keyCode == 27) {
 			$(".col2").hide();
+			$(".col3").hide();
 		}
 	})
 
+	$(".col2").on("click", event => { $(this).data('clicked', true) })
+	$(".col3").on("click", event => { $(this).data('clicked', true) })
+	
+
+	
+
 	$("#profileicon").click(() => {
 		$(".col3").toggle()
+		$(this).data('clicked', true)
+	})
+
+	$(".pushmenu-push").on("click", event => {
+		const col2 = $(".col2"), col3 = $(".col3");
+		const menuicon = $("#menuicon"), profileicon = $("#profileicon");
+		console.log(event.target.id)
+		if (!col2.data('clicked') && event.target.id != 'menuimg') col2.hide();
+		if (!col3.data('clicked') && event.target.id != 'pfp') col3.hide(); 
 	})
 
 	$("li").click(event => {
@@ -265,6 +282,7 @@ function main() {
 
 jQuery(function () {
 	chrome.storage.local.get().then(items => {
+		console.log(items)
 		if (items['new-ui']) {
 			
 			main();

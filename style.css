@@ -12,11 +12,13 @@
 }
 
 .h2_container[data-newui] {
-	border-radius: 10px;
-	border-collapse: separate;
 	perspective: 1px;
 	overflow: hidden;
-	border: 1px solid #ccc; 
+}
+.h2_container:not([data-darkmode])[data-newui] {
+  border: 1px solid #ccc; 
+  border-radius: 10px;
+	border-collapse: separate;
 }
 
 .h2_inner, .h2_innerno_pad[data-newui] {
@@ -100,7 +102,7 @@
 
 .leftmenu .col2[data-newui] {
 	left: 0 !important;
-	box-shadow: 25px 5px 5px #bbb;
+	/* box-shadow: 25px 5px 5px #bbb; */
 }
 
 .colright[data-newui] {
@@ -135,15 +137,28 @@ li[data-newui] {
   height: 30px !important;
   min-height: 30px !important;
 }
+
+li[data-newui][data-darkmode] {
+  border: none !important;
+}
+
 li[data-newui]:hover {
 	cursor: default;
 }
 li[data-newui] a[data-newui] {
-  color: #343434;
   text-align: left;
   text-decoration: none;
   display: block;
 }
+li[data-newui] a[data-newui]:not([data-darkmode]) {
+  color: #343434;
+  
+}
+li[data-newui] a[data-newui][data-darkmode] {
+  color: #f1f1f1;
+  
+}
+
 li[data-newui] ul[data-newui] {
   position: absolute;
   top: 100%;
@@ -157,20 +172,33 @@ li[data-newui] ul[data-newui] {
 }
 li[data-newui] ul[data-newui] li[data-newui] a[data-newui] {
   text-align: left;
-  color: #343434;
   font-size: 15px;
   display: block;
-  white-space: nowrap;
+  white-space: nowrap;  
 }
+li[data-newui]:not([data-darkmode]) ul[data-newui] li[data-newui] {
+  color: #343434;
+}
+
+li[data-newui][data-darkmode] ul[data-newui] li[data-newui] {
+  color: #f1f1f1;
+}
+
 li[data-newui] ul[data-newui] li[data-newui] {
-  max-height: 27px;
   transform:translateZ(-1px);
+  padding: 6px 0 1px 12px;
+  min-width: 200px;
 }
-li[data-newui] ul[data-newui] li[data-newui]:hover {
+li[data-newui] ul[data-newui] li[data-newui]:not([data-darkmode]):hover {
   background-color: #dadada;
   color: #343434;
   cursor: pointer;
 }
+
+li[data-newui] ul[data-newui] li[data-newui][data-darkmode]:hover {
+  cursor: pointer;
+}
+
 li[data-newui] ul[data-newui] {
   left: 100%;
   top: 0;
@@ -252,7 +280,7 @@ ul[data-newui] li[data-newui]:hover>ul[data-newui] {
     position: absolute;
     top: 0;
     left: 50px;
-    box-shadow: 20px 5px 5px #bbb;
+    /* box-shadow: 20px 5px 5px #bbb; */
     color: #343434;
     text-align: left;
 }

@@ -168,10 +168,21 @@ a.toplist-item[data-darkmode] {
   opacity: 1;
 }
 
+#leftMenu2[data-newui][data-darkmode] {
+    border: none;
+}
 
+#leftMenu2[data-darkmode] ul li:hover {
+    background: var(--overlay_1)
+}
 
+#menuicon[data-darkmode] img {
+    filter: brightness(0) invert(1);
+}
 
-
+#menuicon[data-darkmode]:hover {
+    background: var(--overlay_2);
+}
 
 
 
@@ -348,10 +359,11 @@ input[data-darkmode]:not([type=checkbox]):not(.btn):not([type=radio]) {
 */
 
 
-#leftMenu[data-darkmode] {
+#leftMenu[data-darkmode],
+ul[data-darkmode][data-newui] {
   background: var(--overlay_1) !important;
     border: none !important;
-  border-radius: var(--border-radius) !important;
+  /* border-radius: var(--border-radius) !important; */
   padding: 3px 0;
 }
 
