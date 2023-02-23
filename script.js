@@ -36,7 +36,7 @@ function loadMenus() {
 
 	$("#menu_left").children().remove();
 
-	$("#menu_left").append('<ul  class="main-navigation">')
+	$("#menu_left").append('<ul  class="main-navigation menu_part">')
 
 	for (const header of items) {
 		if (items.indexOf(header) < items.length - 1) {
@@ -44,11 +44,12 @@ function loadMenus() {
 			if (items[i + 1][0].name == header[0].name) continue
 		}
 		if (!header[0].name) continue
-		$(".main-navigation").append(`<li  class="menu_header nav-header nav-header-${header[0].name}">${header[0].name}<ul ></ul></li>`)
+		$(".main-navigation").append(`<li  class="menu_part menu_header nav-header nav-header-${header[0].name}">${header[0].name}<ul ></ul></li>`)
 		for (const item of header) {
 			if (header.indexOf(item) == 0) continue;
 			if (item.name.length > 20) continue;
 			const li = document.createElement('li');
+			li.className = 'menu_part'
 			li.innerHTML = `<a  href="${item.href}">${item.name}</a>`
 			try {
 				$(`.nav-header-${header[0].name}`).children().get(0).append(li)
@@ -74,7 +75,7 @@ function loadMenus() {
 	for (const item of profileItems) {
 		let url = window.location.href.split('/').slice(0, 5).join('/') + '/'
 
-		$(".second-navigation").append(`<li  class="menu_header nav-header nav-header-${item.name}"><a  href="${item.overwrite ? item.href : url + item.href}">${item.name}</a></li>`)
+		$(".second-navigation").append(`<li  class="menu_part menu_header nav-header nav-header-${item.name}"><a  href="${item.overwrite ? item.href : url + item.href}">${item.name}</a></li>`)
 	}
 
 	$(".col2").hide();
@@ -116,9 +117,8 @@ function loadEvents() {
 
 	$(".pushmenu-push").on("click", event => {
 		const col2 = $(".col2"), col3 = $(".col3");
-		const menuicon = $("#menuicon"), profileicon = $("#profileicon");
-		console.log(event.target.id)
-		if (!col2.data('clicked') && event.target.id != 'menuimg') col2.hide();
+		console.log(event.target.className)
+		if (!event.target.className.includes('menu_part') && event.target.id != 'menuimg') col2.hide();
 		if (!col3.data('clicked') && event.target.id != 'pfp') col3.hide(); 
 	})
 
