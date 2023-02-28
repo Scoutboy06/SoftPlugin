@@ -15,10 +15,8 @@ function loadMenus() {
 	const items = [];
 	$("#menu_left").children().each(i => {
 		let item = $('#menu_left').children().eq(i);
-		if (item.attr('class') != undefined) {
-			if (item.attr('class').split(' ').includes('menu_header')) {
-				items.push([{ name: item.text(), href: null, id: item.get(0).id }])
-			}
+		if (item.attr('class') != undefined && item.attr('class').includes('menu_header')) {
+			items.push([{ name: item.text(), href: null, id: item.get(0).id }])
 		} else {
 			items[items.length - 1].push(
 				{ name: item.text(), href: item.attr('href'), id: item.get(0).id }
@@ -39,22 +37,19 @@ function loadMenus() {
 	$("#menu_left").append('<ul  class="main-navigation menu_part">')
 
 	for (const header of items) {
-		if (items.indexOf(header) < items.length - 1) {
-			let i = items.indexOf(header)
-			if (items[i + 1][0].name == header[0].name) continue
-		}
+		if (header.length == 1) continue;
 		if (!header[0].name) continue
 		$(".main-navigation").append(`<li  class="menu_part menu_header nav-header nav-header-${header[0].name}">${header[0].name}<ul ></ul></li>`)
 		for (const item of header) {
 			if (header.indexOf(item) == 0) continue;
-			if (item.name.length > 20) continue;
+			if (item.name.length > 50) continue;
 			const li = document.createElement('li');
 			li.className = 'menu_part'
 			li.innerHTML = `<a  href="${item.href}">${item.name}</a>`
 			try {
 				$(`.nav-header-${header[0].name}`).children().get(0).append(li)
 			} catch (e) {
-				console.log(header[0].name)
+				$(`.nav-header-Filer`).children().get(0).append(li)
 			}
 		}
 	}
@@ -92,7 +87,6 @@ function loadEvents() {
 	$("#logoL").click(() => {
 		let oldParts = window.location.href.split('/');
 		oldParts = oldParts.slice(0, 6);
-		console.log(oldParts)
 		oldParts.push('right_student_startpage.jsp')
 		window.location.href = oldParts.join('/')
 	})
@@ -106,9 +100,9 @@ function loadEvents() {
 
 	$(".col2").on("click", event => { $(this).data('clicked', true) })
 	$(".col3").on("click", event => { $(this).data('clicked', true) })
-	
 
-	
+
+
 
 	$("#profileicon").click(() => {
 		$(".col3").toggle()
@@ -117,9 +111,8 @@ function loadEvents() {
 
 	$(".pushmenu-push").on("click", event => {
 		const col2 = $(".col2"), col3 = $(".col3");
-		console.log(event.target.className)
 		if (!event.target.className.includes('menu_part') && event.target.id != 'menuimg') col2.hide();
-		if (!col3.data('clicked') && event.target.id != 'pfp') col3.hide(); 
+		if (!col3.data('clicked') && event.target.id != 'pfp') col3.hide();
 	})
 
 	$("li").click(event => {
@@ -127,7 +120,6 @@ function loadEvents() {
 		if ($(content).attr('href')) {
 			window.location.href = $(content).attr('href')
 		}
-		console.log($(event.target).children().get(0))
 	})
 }
 
@@ -260,6 +252,16 @@ function main() {
 
 	});
 
+	if (window.location.href.includes('right_student_ability')) {
+		$("span").each(i => {
+			let item = $("span").eq(i);
+
+			if (item.css('background-color') == 'rgb(255, 255, 255)') {
+				item.css('background-color', 'transparent');
+			}
+		})
+	}
+
 	loadMenus();
 	loadEvents();
 
@@ -282,22 +284,26 @@ function main() {
 
 jQuery(function () {
 	chrome.storage.local.get().then(items => {
-		console.log(items)
 		if (items['new-ui']) {
-			
+
 			main();
-			var elems = document.body.getElementsByTagName("*");
-			document.body.setAttribute('data-newui', 'true');
-			for (const elem of elems) {
-				elem.setAttribute('data-newui', 'true')
-			}
+			setInterval(() => {
+				var elems = document.body.getElementsByTagName("*");
+				document.body.setAttribute('data-newui', 'true');
+				for (const elem of elems) {
+					elem.setAttribute('data-newui', 'true')
+				}
+			});
 		}
 		if (items['dark-mode']) {
-			var elems = document.body.getElementsByTagName("*");
-			document.body.setAttribute('data-darkmode', 'true');
-			for (const elem of elems) {
-				elem.setAttribute('data-darkmode', 'true')
-			}
+
+			setInterval(() => {
+				var elems = document.body.getElementsByTagName("*");
+				document.body.setAttribute('data-darkmode', 'true');
+				for (const elem of elems) {
+					elem.setAttribute('data-darkmode', 'true')
+				}
+			});
 		}
 	})
 })
