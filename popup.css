@@ -1,7 +1,7 @@
 html,
 body {
   width: 250px;
-  height: 280px;
+  height: 310px;
   text-align: center;
   border-radius: 10px;
   background-color: #292A2D;
@@ -66,7 +66,25 @@ a.my-button{
  a.my-button:active{
   transform: scale(0.95);
  }
-
+ a.skolmaten-button{
+  background: linear-gradient(to right,#9aca66 ,#007b23);
+  color: #fff;
+  font-family: Trebuchet MS;
+  font-size: 12px;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: none;
+  padding: 6px 5px;
+  border: 0px solid #000;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 0px 0px 10px 0px #2D2D2D;
+  margin-top: 5px;
+  width: 80%;
+ }
+ a.skolmaten-button:active {
+  transform: scale(0.95);
+ }
  a.newui-button{
   background: linear-gradient(to right,#ca1933 ,#ff0000);
   color: #fff;

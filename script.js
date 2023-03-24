@@ -182,6 +182,9 @@ function url_content(url) {
 
 
 function main() {
+	
+	console.log("Hi")
+
 	$(".cal-lesson").css("border-radius", "0px");
 	$(".cal-lesson").css("background-image", "-webkit-linear-gradient(top, #2b518f, #2b518f)")
 	$(".cal-lesson").css("border", "1px solid #000")
@@ -282,6 +285,43 @@ function main() {
 	}, 30 * 60000);
 }
 
+$(document).ready(function() {
+	chrome.storage.local.get('skolmaten', function(t) {
+        if (t['skolmaten']) {
+            $.get("https://skolmaten.se/api/3/menu/?school=4806606910914560&limit=2&offset=0&client=j44i0zuqo8izmlwg5blh").then(function (data) {
+				//var jObj = JSON.parse(data);
+				console.log(data["weeks"][0]["days"])
+				$(".pushmenu-push").append(`
+				<div class="skolmat_div" onclick="$('.skolmat_div').remove()">
+					<img style="height: 50px; position: relative; left: 10px; top: 10px;" src="` + data["school"]["imageURL"] + `"></img>
+					<h1 style="color: white; position: relative; top: -56px; left: 70px;">Skolmaten</h1>
+					<h3 style="
+						color: rgb(179 179 179);
+						position: relative;
+						top: -70px;
+						left: 71px;
+					">` + data["school"]["name"] + `</h3>
+
+					<h3 style="
+			position: relative;
+			top: -65px;
+			color: white;
+			font-weight: bold;
+			left: 10px;
+		">` + data["weeks"][0]["days"][new Date().getDay() - 1]["meals"][0]["value"] + `</h3>
+				<h3 style="
+			position: relative;
+			top: -77px;
+			color: white;
+			font-weight: 100;
+			left: 10px;
+		">` + data["weeks"][0]["days"][new Date().getDay() - 1]["meals"][1]["value"] + `</h3>
+				</div>
+			`);
+			});
+        }
+    })
+})
 jQuery(function () {
 	chrome.storage.local.get().then(items => {
 		if (items['new-ui']) {

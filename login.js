@@ -54,6 +54,17 @@ $('.newui-button').click(function() {
         }
     })
 })
+$('.skolmaten-button').click(function() {
+    chrome.storage.local.get('skolmaten', function(t) {
+        if (!t['skolmaten']) {
+            chrome.storage.local.set( { 'skolmaten': true }, function() {} );
+            $('.skolmaten-button').css("background", "linear-gradient(to right,#9aca66 ,#007b23");
+        } else {
+            chrome.storage.local.set( { 'skolmaten': false }, function() {} );
+            $(".skolmaten-button").css("background", "linear-gradient(to right,#ca1933 ,#ff0000)")
+        }
+    })
+})
 // https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_large.png?v=1571606036
 // https://play-lh.googleusercontent.com/mTNMh0pombnh06rbkAjySII-gpTkPt7c0wyfgQiJxG2lOVqBdPPr9uTICxwVqhiGMlk
 
@@ -70,9 +81,8 @@ $("#saveBtn").click(function() {
             }, 2000)
         }
     );
-
-
 })
+
 setInterval(function()
 {
     try{
@@ -103,6 +113,16 @@ setInterval(function()
             {
                 $("#nightBtn").css("background", "linear-gradient(to right,#394564 ,#7c8fbf)")
                 $("#nightBtn").html(`<img id="dMode" src="https://i.imgur.com/pidaniW.png" style="height: 15px; margin-left: 5px; margin-right: -15px; float: left;" alt="">Light Mode`)
+            }
+        })
+		chrome.storage.local.get('skolmaten', function(t) {
+            if(t['skolmaten'] == null || t['skolmaten'] == false)
+            {
+                $("#skolmaten").css("background", "linear-gradient(to right,#ca1933 ,#ff0000)")
+            }
+            else
+            {
+                $("#skolmaten").css("background", "linear-gradient(to right,#9aca66 ,#007b23)")
             }
         })
     }
