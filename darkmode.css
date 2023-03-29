@@ -689,3 +689,34 @@ ul.nav.nav-tabs[data-darkmode] > li > a:hover {
     border: none;
     color: #fff;
 }
+
+
+img[alt="Logotyp"][data-darkmode] {
+  filter: invert(1);
+}
+
+.MuiPaper-root[data-darkmode] {
+  background-color: var(--overlay_1);
+  color: white;
+  border: none;
+}
+
+.MuiDivider-root[data-darkmode] {
+  border-color: var(--overlay_3)
+}
+
+.MuiList-root[data-darkmode]::-webkit-scrollbar {
+  width: 0;
+}
+
+.MuiPaper-elevation[data-darkmode] {
+  border-right: 1px solid var(--overlay_3) !important;
+}
+
+.MuiTypography-root[data-darkmode] {
+  color: white;
+}
+
+.css-ken2ea[data-darkmode]::before, .css-ken2ea[data-darkmode]::after {
+  border-top-color: var(--overlay_3);
+}
