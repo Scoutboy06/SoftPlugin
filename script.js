@@ -285,14 +285,118 @@ function main() {
 	}, 30 * 60000);
 }
 
+$.fn.xpathEvaluate = function (xpathExpression) {
+	// NOTE: vars not declared local for debug purposes
+	$this = this.first(); // Don't make me deal with multiples before coffee
+ 
+	// Evaluate xpath and retrieve matching nodes
+	xpathResult = this[0].evaluate(xpathExpression, this[0], null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+ 
+	result = [];
+	while (elem = xpathResult.iterateNext()) {
+	   result.push(elem);
+	}
+ 
+	$result = jQuery([]).pushStack( result );
+	return $result;
+ }
+
+function setUI() {
+	chrome.storage.local.get().then(items => {
+		if (items['new-ui']) {
+
+			main();
+			setInterval(() => {
+				var elems = document.body.getElementsByTagName("*");
+				document.body.setAttribute('data-newui', 'true');
+				for (const elem of elems) {
+					elem.setAttribute('data-newui', 'true')
+				}
+			});
+		}
+		if (items['dark-mode']) {
+
+			setInterval(() => {
+				var elems = document.body.getElementsByTagName("*");
+				document.body.setAttribute('data-darkmode', 'true');
+				for (const elem of elems) {
+					elem.setAttribute('data-darkmode', 'true')
+				}
+				if($("#darkImg").length)
+				{
+					$("#darkImg").attr("src", "https://i.imgur.com/W5fIgtO.png")
+				}
+			});
+		} else {
+			/*var elems = document.body.getElementsByTagName("*");
+				document.body.removeAttribute('data-darkmode');
+				for (const elem of elems) {
+					elem.removeAttribute('data-darkmode')
+				}*/
+		}
+	})
+}
+var foodShown = false
+function showFood() {
+	foodShown = foodShown ? false : true;
+	if(foodShown)
+	{
+		$(".skolmat_div").css("visibility", "visible")
+	}
+	else
+	{
+		$(".skolmat_div").css("visibility", "hidden")
+	}
+}
+
+function darkMode() {
+	console.warn("dark click!")
+	chrome.storage.local.get('dark-mode', function(t) {
+		console.log("dark mode old", t['dark-mode'])
+		console.log("dark mode new", !t['dark-mode'])
+        if(t['dark-mode'] == null || t['dark-mode'] == false)
+        {
+			$("#darkImg").attr("src", "https://i.imgur.com/W5fIgtO.png")
+            chrome.storage.local.set( { 'dark-mode': true }, function() {location.reload()} );
+        }
+        else
+        {
+			$("#darkImg").attr("src", "https://i.imgur.com/awVbvCE.png")
+            chrome.storage.local.set( { 'dark-mode': false }, function() {location.reload()} );
+        }
+    })
+}
 $(document).ready(function() {
-	chrome.storage.local.get('skolmaten', function(t) {
-        if (t['skolmaten']) {
-            $.get("https://skolmaten.se/api/3/menu/?school=4806606910914560&limit=2&offset=0&client=j44i0zuqo8izmlwg5blh").then(function (data) {
+	var appended = false
+	var muiStack = setInterval(function() {
+		if($(".MuiStack-root").length && !appended)
+		{
+			$(document).xpathEvaluate('//*[@id="student-header-root"]/div[1]/header/div/div[2]/div').append(`
+			<a id="darkIco" class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1n2jcxe" tabindex="0" target="_blank">
+			<img id="darkImg" src="https://i.imgur.com/awVbvCE.png" style="height: 18px;">
+			</a>
+			<hr class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1x6z4ed"><a id="foodIco" class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1n2jcxe" tabindex="0" target="_blank">
+			<img src="https://i.imgur.com/lfbcIy2.png" style="
+				height: 18px;
+			">
+			</a>
+			`)
+			$(document).xpathEvaluate('//*[@id="foodIco"]').click(function() {
+				showFood()
+			})
+			$(document).xpathEvaluate('//*[@id="darkIco"]').click(function() {
+				darkMode()
+			})
+
+			appended = true
+			clearInterval(muiStack)
+		}
+	}, 1000)
+	$.get("https://skolmaten.se/api/3/menu/?school=4806606910914560&limit=2&offset=0&client=j44i0zuqo8izmlwg5blh").then(function (data) {
 				//var jObj = JSON.parse(data);
 				console.log(data["weeks"][0]["days"])
 				$(".pushmenu-push").append(`
-				<div class="skolmat_div" onclick="$('.skolmat_div').remove()">
+				<div class="skolmat_div" style="visibility: hidden">
 					<img style="height: 50px; position: relative; left: 10px; top: 10px;" src="` + data["school"]["imageURL"] + `"></img>
 					<h1 style="color: white; position: relative; top: -56px; left: 70px;">Skolmaten</h1>
 					<h3 style="
@@ -318,32 +422,6 @@ $(document).ready(function() {
 		">` + data["weeks"][0]["days"][new Date().getDay() - 1]["meals"][1]["value"] + `</h3>
 				</div>
 			`);
-			});
-        }
-    })
+	});
 })
-jQuery(function () {
-	chrome.storage.local.get().then(items => {
-		if (items['new-ui']) {
-
-			main();
-			setInterval(() => {
-				var elems = document.body.getElementsByTagName("*");
-				document.body.setAttribute('data-newui', 'true');
-				for (const elem of elems) {
-					elem.setAttribute('data-newui', 'true')
-				}
-			});
-		}
-		if (items['dark-mode']) {
-
-			setInterval(() => {
-				var elems = document.body.getElementsByTagName("*");
-				document.body.setAttribute('data-darkmode', 'true');
-				for (const elem of elems) {
-					elem.setAttribute('data-darkmode', 'true')
-				}
-			});
-		}
-	})
-})
+jQuery(setUI)
