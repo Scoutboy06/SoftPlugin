@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "SoftPlugin - SchoolSoft Addon",
-  "version": "1.0.5",
-  "description": "Use this plugin to add new features to SchoolSoft.",
+  "version": "1.0.6",
+  "description": "SchoolSoft did it first, we did it better.",
   "action": {
     "default_icon": "assets/icon3.png",
     "default_popup": "popup.html"
