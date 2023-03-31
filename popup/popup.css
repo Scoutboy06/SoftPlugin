@@ -1,0 +1,170 @@
+html,
+body {
+  width: 250px;
+  height: 210px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #292A2D;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.css-input {
+  padding: 4px;
+  font-size: 13px;
+  border-width: 1px;
+  border-color: #1c1c1d;
+  background-color: #3A3B3D;
+  color: #d6d6d6;
+  border-style: solid;
+  width: 80%;
+  text-align: center;
+  border-radius: 9px;
+  box-shadow: 0px 0px 5px rgba(66,66,66,.100);
+}
+.css-input:focus {
+  outline:none;
+}
+
+a.Loginbutton{
+  background: linear-gradient(to right,#c419ca ,#9300f5);
+  color: #fff;
+  font-family: Trebuchet MS;
+  font-size: 12px;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: none;
+  transform: background 1s;
+  padding: 3px 8px;
+  border: 0px solid #000;
+  border-radius: 5px;
+  width: 36%;
+  display: block; float: right; margin-right: 20px;
+  box-shadow: 0px 0px 10px 0px #2D2D2D;
+ }
+ a.Loginbutton:active{
+  transform: scale(0.95);
+ }
+
+a.my-button{
+  background: linear-gradient(to right,#ca1933 ,#ff0000);
+  color: #fff;
+  font-family: Trebuchet MS;
+  font-size: 12px;
+  font-weight: 800;
+  font-style: normal;
+  transform: all 1.5s ease-out;
+  text-decoration: none;
+  padding: 3px 5px;
+  border: 0px solid #000;
+  border-radius: 5px;
+  margin-left: 20px;
+  float: left;
+  width: 36%;
+  display: inline-block;
+  box-shadow: 0px 0px 10px 0px #2D2D2D;
+ }
+ a.my-button:active{
+  transform: scale(0.95);
+ }
+ a.skolmaten-button{
+  background: linear-gradient(to right,#9aca66 ,#007b23);
+  color: #fff;
+  font-family: Trebuchet MS;
+  font-size: 12px;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: none;
+  padding: 6px 5px;
+  border: 0px solid #000;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 0px 0px 10px 0px #2D2D2D;
+  margin-top: 5px;
+  width: 80%;
+ }
+ a.skolmaten-button:active {
+  transform: scale(0.95);
+ }
+ a.newui-button{
+  background: linear-gradient(to right,#ca1933 ,#ff0000);
+  color: #fff;
+  font-family: Trebuchet MS;
+  font-size: 12px;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: none;
+  padding: 6px 5px;
+  border: 0px solid #000;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 0px 0px 10px 0px #2D2D2D;
+  margin-top: 10px;
+  width: 80%;
+ }
+ a.newui-button:active {
+  transform: scale(0.95);
+ }
+
+ .rotate-center{-webkit-animation:rotate-center 3s ease-out 1s infinite;animation:rotate-center 3s ease-out 1s infinite}
+ @-webkit-keyframes rotate-center{0%{-webkit-transform:rotate(0);transform:rotate(0)}40%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes rotate-center{0%{-webkit-transform:rotate(0);transform:rotate(0)}40%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}
+
+ a.night-button{
+  background: linear-gradient(to right,#394564 ,#242c41);
+  color: #fff;
+  font-family: Trebuchet MS;
+  font-size: 12px;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: none;
+  padding: 6px 5px;
+  border: 0px solid #000;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 0px 0px 10px 0px #2D2D2D;
+  margin-top: 5px;
+  width: 80%;
+ }
+ a.night-button:active {
+  transform: scale(0.95);
+ }
+
+ a.discord-button{
+  background: linear-gradient(to right,#313338 ,#242c41);
+  color: #fff;
+  font-family: Trebuchet MS;
+  font-size: 12px;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: none;
+  padding: 10px 5px;
+  border: 0px solid #000;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 0px 0px 10px 0px #2D2D2D;
+  margin-top: 10px;
+  width: 80%;
+ }
+ a.discord-button:active {
+  transform: scale(0.95);
+ }
+input {
+  margin-bottom: 10px;
+}
+body {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: auto;
+}
+
+#indicators {
+  padding-top: 15px;
+  padding-bottom: 20px;
+  text-align: center;
+  color: #999;
+}
+
+#repo-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

@@ -182,7 +182,7 @@ function url_content(url) {
 
 
 function main() {
-	
+
 	console.log("Hi")
 
 	$(".cal-lesson").css("border-radius", "0px");
@@ -288,18 +288,18 @@ function main() {
 $.fn.xpathEvaluate = function (xpathExpression) {
 	// NOTE: vars not declared local for debug purposes
 	$this = this.first(); // Don't make me deal with multiples before coffee
- 
+
 	// Evaluate xpath and retrieve matching nodes
 	xpathResult = this[0].evaluate(xpathExpression, this[0], null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
- 
+
 	result = [];
 	while (elem = xpathResult.iterateNext()) {
-	   result.push(elem);
+		result.push(elem);
 	}
- 
-	$result = jQuery([]).pushStack( result );
+
+	$result = jQuery([]).pushStack(result);
 	return $result;
- }
+}
 
 function setUI() {
 	chrome.storage.local.get().then(items => {
@@ -322,8 +322,7 @@ function setUI() {
 				for (const elem of elems) {
 					elem.setAttribute('data-darkmode', 'true')
 				}
-				if($("#darkImg").length)
-				{
+				if ($("#darkImg").length) {
 					$("#darkImg").attr("src", "https://i.imgur.com/W5fIgtO.png")
 				}
 			});
@@ -339,38 +338,33 @@ function setUI() {
 var foodShown = false
 function showFood() {
 	foodShown = foodShown ? false : true;
-	if(foodShown)
-	{
+	if (foodShown) {
 		$(".skolmat_div").css("visibility", "visible")
 	}
-	else
-	{
+	else {
 		$(".skolmat_div").css("visibility", "hidden")
 	}
 }
 
 function darkMode() {
 	console.warn("dark click!")
-	chrome.storage.local.get('dark-mode', function(t) {
+	chrome.storage.local.get('dark-mode', function (t) {
 		console.log("dark mode old", t['dark-mode'])
 		console.log("dark mode new", !t['dark-mode'])
-        if(t['dark-mode'] == null || t['dark-mode'] == false)
-        {
+		if (t['dark-mode'] == null || t['dark-mode'] == false) {
 			$("#darkImg").attr("src", "https://i.imgur.com/W5fIgtO.png")
-            chrome.storage.local.set( { 'dark-mode': true }, function() {location.reload()} );
-        }
-        else
-        {
+			chrome.storage.local.set({ 'dark-mode': true }, function () { location.reload() });
+		}
+		else {
 			$("#darkImg").attr("src", "https://i.imgur.com/awVbvCE.png")
-            chrome.storage.local.set( { 'dark-mode': false }, function() {location.reload()} );
-        }
-    })
+			chrome.storage.local.set({ 'dark-mode': false }, function () { location.reload() });
+		}
+	})
 }
-$(document).ready(function() {
+$(document).ready(function () {
 	var appended = false
-	var muiStack = setInterval(function() {
-		if($(".MuiStack-root").length && !appended)
-		{
+	var muiStack = setInterval(function () {
+		if ($(".MuiStack-root").length && !appended) {
 			$(document).xpathEvaluate('//*[@id="student-header-root"]/div[1]/header/div/div[2]/div').append(`
 			<a id="darkIco" class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1n2jcxe" tabindex="0" target="_blank">
 			<img id="darkImg" src="https://i.imgur.com/awVbvCE.png" style="height: 18px;">
@@ -381,10 +375,10 @@ $(document).ready(function() {
 			">
 			</a>
 			`)
-			$(document).xpathEvaluate('//*[@id="foodIco"]').click(function() {
+			$(document).xpathEvaluate('//*[@id="foodIco"]').click(function () {
 				showFood()
 			})
-			$(document).xpathEvaluate('//*[@id="darkIco"]').click(function() {
+			$(document).xpathEvaluate('//*[@id="darkIco"]').click(function () {
 				darkMode()
 			})
 
@@ -393,9 +387,9 @@ $(document).ready(function() {
 		}
 	}, 1000)
 	$.get("https://skolmaten.se/api/3/menu/?school=4806606910914560&limit=2&offset=0&client=j44i0zuqo8izmlwg5blh").then(function (data) {
-				//var jObj = JSON.parse(data);
-				console.log(data["weeks"][0]["days"])
-				$(".pushmenu-push").append(`
+		//var jObj = JSON.parse(data);
+		console.log(data["weeks"][0]["days"])
+		$(".pushmenu-push").append(`
 				<div class="skolmat_div" style="visibility: hidden">
 					<img style="height: 50px; position: relative; left: 10px; top: 10px;" src="` + data["school"]["imageURL"] + `"></img>
 					<h1 style="color: white; position: relative; top: -56px; left: 70px;">Skolmaten</h1>
