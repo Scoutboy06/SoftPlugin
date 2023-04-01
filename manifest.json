@@ -8,15 +8,23 @@
 		"default_popup": "popup/popup.html"
 	},
 	"permissions": ["storage"],
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"content/src/styles/darkmode.css",
+				"content/src/styles/newui.css"
+			],
+			"matches": ["https://sms.schoolsoft.se/*"]
+		}
+	],
 	"content_scripts": [
 		{
-			"js": ["jquery.min.js", "content/content.js"],
-			"css": ["content/content.css", "content/darkmode.css"],
+			"js": ["content/dist/main.js"],
 			"matches": ["https://sms.schoolsoft.se/*"]
 		},
 		{
 			"matches": ["https://login.grandid.com/*"],
-			"js": ["jquery.min.js", "content/autologin.js"]
+			"js": ["jquery.min.js", "content/src/autologin.js"]
 		}
 	],
 	"icons": {
