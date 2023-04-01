@@ -12,4 +12,8 @@ npm run build
 # Using yarn
 yarn install
 yarn build
+
+# Using pnpm
+pnpm install
+pnpm build
 ```
