@@ -20,14 +20,14 @@ export async function initNewUI() {
 	if (new_ui) enableNewUI();
 
 	let interval = setInterval(() => {
-		const topNavBtns = $('#student-header-root > div:first-child > header > div > div:nth-child(2) > div');
+		const topNavBtns = $('#student-header-root > div:nth-child(1) > header > div > div.MuiStack-root.css-1abzdwk');
 		if (!topNavBtns.length) return;
 
-		topNavBtns.append(darkModeBtn);
-		topNavBtns.append(foodBtn);
+		topNavBtns.prepend(foodBtn);
+		topNavBtns.prepend(darkModeBtn);
 
-		darkModeBtn.on('click', toggleDarkMode);
 		foodBtn.on('click', toggleFood);
+		darkModeBtn.on('click', toggleDarkMode);
 
 		clearInterval(interval);
 	}, 100);
