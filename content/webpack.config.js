@@ -7,6 +7,7 @@ module.exports = {
 		devMiddleware: {
 			writeToDisk: true,
 		},
+		webSocketServer: false,
 	},
 	output: {
 		path: path.resolve('./dist'),
